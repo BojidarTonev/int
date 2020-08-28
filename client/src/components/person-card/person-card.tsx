@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { AppStore, appContext } from "../../store/AppStore";
 import { CardBody } from "./card-body/card-body";
+import { observer } from "mobx-react";
 import "./person-card.css";
 
-export const PersonCard = (props: any) => {
-  const [label, setLabel] = useState("");
-  const [color, setColor] = useState("255, 255, 255");
-  const { uuid, company, bio, name, title, avatar } = props;
-
-  const onSubmit = (e: any) => {
-    e.preventDefault();
-
+export const PersonCard = observer((props: any) => {
+  const store: AppStore = useContext(appContext);
+  const { uuid, company, bio, name, title, avatar, label, color } = props;
+  const onSubmit = () => {
     const labelInput = document.getElementById(
       `card-label-input-${uuid}`
     ) as any;
@@ -17,8 +15,8 @@ export const PersonCard = (props: any) => {
       `card-color-select-${uuid}`
     ) as any;
 
-    setLabel(labelInput.value);
-    setColor(colorInput.value);
+
+    store.updatePersonById(uuid, labelInput.value, colorInput.value)
   };
 
   return (
@@ -46,4 +44,4 @@ export const PersonCard = (props: any) => {
       </div>
     </div>
   );
-};
+});

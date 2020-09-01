@@ -7,6 +7,20 @@ import "./person-card.css";
 export const PersonCard = observer((props: any) => {
   const store: AppStore = useContext(appContext);
   const { uuid, company, bio, name, title, avatar, label, color } = props;
+
+  const openModal = () => {
+    let modalImg = document.getElementById("modal-img") as any;
+    const img = document.getElementById(`img-${uuid}`) as any;
+    const modal = document.getElementById("my-modal") as any;
+    modal.style.display = "block";
+    modalImg.src = img.src
+  };
+
+  const closeModal = () => {
+    const modal = document.getElementById("my-modal") as any;
+    modal.style.display = "none";
+  };
+
   const onSubmit = () => {
     const labelInput = document.getElementById(
       `card-label-input-${uuid}`
@@ -15,8 +29,7 @@ export const PersonCard = observer((props: any) => {
       `card-color-select-${uuid}`
     ) as any;
 
-
-    store.updatePersonById(uuid, labelInput.value, colorInput.value)
+    store.updatePersonById(uuid, labelInput.value, colorInput.value);
   };
 
   return (
@@ -24,7 +37,14 @@ export const PersonCard = observer((props: any) => {
       <div className="left-part">
         <h1>{name}</h1>
         <b>{title}</b>
-        <img src={avatar} height="30px" width="50px" alt="" />
+        <img
+          src={avatar}
+          height="30px"
+          width="50px"
+          alt=""
+          id={`img-${uuid}`}
+          onClick={openModal}
+        />
       </div>
       <div className="right-part">
         <div className="card-options">
@@ -41,6 +61,12 @@ export const PersonCard = observer((props: any) => {
           </button>
         </div>
         <CardBody label={label} company={company} bio={bio} color={color} />
+      </div>
+      <div className="modal" id="my-modal">
+        <span className="close" onClick={closeModal}>
+          &times;
+        </span>
+        <img className="modal-content" id="modal-img" src={avatar} />
       </div>
     </div>
   );

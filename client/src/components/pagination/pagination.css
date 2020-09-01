@@ -1,0 +1,21 @@
+.pagination-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 35em;
+  margin-bottom: 3em;
+}
+
+.current-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  height: 2em;
+  width: 2em;
+  border-radius: 2em;
+  color: black;
+  background: rgba(52, 208, 67, 1);
+  border: 0.1em solid rgba(0, 119, 255, 1);
+}

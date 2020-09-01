@@ -26,8 +26,7 @@ app.get("/list", async (req, res) => {
       res.end("here is your data");
     })
     .catch((err) => {
-      res.send([]);
-      res.end("here is your error: " + err);
+      res.status(500).send('smth broke').end()
     });
 });
 

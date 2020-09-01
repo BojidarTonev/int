@@ -10,8 +10,10 @@ export const SearchBar = observer(() => {
     const searchInput: any = document.getElementById("search-bar-input");
     const searchValue = searchInput.value;
 
-    store.setFilter(searchValue);
-    store.applyFilter();
+    store.setCurrentPage(0);
+    store.setOffset(0);
+    store.applyFilter(searchValue);
+    
   };
 
   const handleForceRefreshClick = () => {

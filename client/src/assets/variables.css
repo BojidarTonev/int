@@ -1,0 +1,13 @@
+:root {
+    /* Typography font-size variables */
+    --font-size-body: 14px;
+    --font-size-larger: 16px;
+    --font-size-body-big: 18px;
+    --font-size-body-huge: 20px;
+
+    /* Color varailbes */
+    --main-green: 52, 208, 67;
+    --main-blue: 0, 119, 255;
+    --main-gray: 255, 255, 255;
+    --main-black: 0, 0, 0;
+}

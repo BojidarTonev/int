@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useContext } from "react";
+import React, { useEffect, useContext, useCallback } from "react";
 import { appContext, AppStore, Person } from "./store/AppStore";
 import { observer } from "mobx-react";
 import { PersonCard } from "./components/person-card/person-card";
@@ -12,7 +12,7 @@ import "./App.css";
 export const App = observer(() => {
   const store: AppStore = useContext(appContext);
 
-  const renderData = useCallback(() => {
+  const renderData = () => {
     if (store.error) {
       return;
     }
@@ -20,6 +20,8 @@ export const App = observer(() => {
       store.offSet,
       store.offSet + store.entitiesPerPage
     );
+    store.setPageCount(store.displayData.length);
+
     return entities.map((pd: Person) => (
       <PersonCard
         uuid={pd.uuid}
@@ -32,7 +34,7 @@ export const App = observer(() => {
         color={pd.color || "255, 255, 255"}
       />
     ));
-  }, [store.offSet, store.displayData]);
+  };
 
   const initData = useCallback(async () => {
     const res: any = await axios.get("/list");
@@ -42,10 +44,9 @@ export const App = observer(() => {
     }
     store.setError("");
     store.setData(res.data);
-    store.setPageCount();
     store.removeFilter();
     store.isLoading = false;
-  }, []);
+  }, [store]);
 
   useEffect(() => {
     store.isLoading = true;
@@ -58,7 +59,7 @@ export const App = observer(() => {
       initData();
       store.hardRefresh = false;
     }
-  }, [store.hardRefresh]);
+  }, [store, store.hardRefresh, initData]);
 
   return (
     <div className="App">

@@ -21,7 +21,6 @@ export interface Person {
 export class AppStore {
   @persist("list") @observable data: Person[] = [];
   @observable displayData: Person[] = [];
-  @observable filter: string = "";
   @observable isLoading: boolean = true;
   @observable pageCount: number = 1;
   @observable entitiesPerPage: number = 20;
@@ -35,12 +34,9 @@ export class AppStore {
     this.data = data;
     this.isLoading = false;
   };
-
   @action
-  setFilter = (filterString: string) => (this.filter = filterString);
-  @action
-  setPageCount = () => {
-    this.pageCount = Math.ceil(this.data.length / this.entitiesPerPage);
+  setPageCount = (count: number) => {
+    this.pageCount = Math.ceil(count / this.entitiesPerPage);
   };
   @action
   setOffset = (number: number) => (this.offSet = number);
@@ -48,17 +44,16 @@ export class AppStore {
   setCurrentPage = (number: number) => (this.currentPage = number);
 
   @action
-  applyFilter = () => {
-    if (!this.filter) {
+  applyFilter = (filterString: string) => {
+    if (!filterString) {
       this.displayData = this.data;
       return;
     }
-    const filteredData = this.data.filter((el) => el.label === this.filter);
+    const filteredData = this.data.filter((el) => el.label === filterString);
     this.displayData = filteredData;
   };
   @action
   removeFilter = () => {
-    this.filter = "";
     this.displayData = this.data;
     this.isLoading = false;
   };

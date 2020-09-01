@@ -16,6 +16,6 @@
   width: 2em;
   border-radius: 2em;
   color: black;
-  background: rgba(52, 208, 67, 1);
-  border: 0.1em solid rgba(0, 119, 255, 1);
+  background: rgba(var(--main-green), 1);
+  border: 0.1em solid rgba(var(--main-blue), 1);
 }

@@ -16,7 +16,7 @@ button {
   border-radius: 0.5em;
   padding: 0.2em 0.7em;
   font-size: 1.1em;
-  background: rgba(52, 208, 67, 1);
+  background: rgba(var(--main-green), 1);
   font-family: "Slabo 27px", serif;
   cursor: pointer;
 

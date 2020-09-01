@@ -26,7 +26,7 @@ export const Pagination = observer(() => {
       <button onClick={() => handlePageClick(PREVIOUS) as any}>
         PREVIOUS PAGE
       </button>
-      <div className="current-page">{store.currentPage}</div>
+      <div className="current-page">{store.currentPage + 1}</div>
       <button onClick={() => handlePageClick(NEXT) as any}>NEXT PAGE</button>
     </div>
   );

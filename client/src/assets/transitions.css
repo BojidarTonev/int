@@ -1,5 +1,5 @@
 button:hover {
-  background: rgba(0, 212, 255, 1);
+  background: rgba(var(--main-blue), 1);
   font-size: 1.2em;
 }
 

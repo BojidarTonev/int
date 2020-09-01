@@ -19,7 +19,7 @@ export const CardOptions = (props: any) => {
   };
 
   return (
-    <div className="card-options">
+    <div className="card-options" key={`card-options-${uuid}`}>
       <input type="text" id={`card-label-input-${uuid}`} />
       <select name="color-picker" id={`card-color-select-${uuid}`}>
         <option value="0, 0, 0">black</option>

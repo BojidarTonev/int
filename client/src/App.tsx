@@ -22,6 +22,7 @@ export const App = observer(() => {
     );
     store.setPageCount(store.displayData.length);
 
+    store.isLoading = false;
     return entities.map((pd: Person) => (
       <PersonCard
         uuid={pd.uuid}
@@ -45,7 +46,6 @@ export const App = observer(() => {
     store.setError("");
     store.setData(res.data);
     store.removeFilter();
-    store.isLoading = false;
   }, [store]);
 
   useEffect(() => {
